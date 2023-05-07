@@ -4,7 +4,7 @@ import Button from "../UI/Button";
 
 const HeaderCartButton = (props) => {
     return (
-        <Button className={classes.button}>
+        <Button>
             <span className={classes.icon}>
                 <CartIcon />
             </span>

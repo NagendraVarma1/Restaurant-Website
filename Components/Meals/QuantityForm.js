@@ -10,7 +10,7 @@ const QuantityForm = () => {
                 <input type="text" value={1}></input>
             </div>
             <div>
-                <Button className={classes.button}>+Add</Button>
+                <Button>+Add</Button>
             </div>
             
         </form>
