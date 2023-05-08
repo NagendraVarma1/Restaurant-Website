@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../UI/Card";
-import classes from './Meals.module.css'
+import classes from "./Meals.module.css";
 import QuantityForm from "./QuantityForm";
 
 const DummyMeals = [
@@ -36,18 +36,19 @@ const Meals = () => {
       <Card>
         <ul>
           {DummyMeals.map((meal) => (
-              <div className={classes.meals}>
-                <div>
-                  <h3>{meal.name}</h3>
+            <li className={classes.meals} key={meal.id}>
+              <div>
+                <h3>{meal.name}</h3>
                 <div className={classes.desc}>{meal.description}</div>
-                <div className={classes.price}>{`$${meal.price.toFixed(2)}`}</div>
-                </div>
-                <div>
-                  <QuantityForm />
-                </div>
-                
+                <div className={classes.price}>{`$${meal.price.toFixed(
+                  2
+                )}`}</div>
               </div>
-              
+              <div>
+                
+                <QuantityForm id={meal.id} item={meal}/>
+              </div>
+            </li>
           ))}
         </ul>
       </Card>

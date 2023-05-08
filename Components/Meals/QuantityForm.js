@@ -1,16 +1,27 @@
-import React from "react";
+import React,{useRef, useContext} from "react";
 import classes from './Quantity.module.css';
-import Button from "../UI/Button";
+import CartContext from "../../store/cart-context";
 
-const QuantityForm = () => {
+const QuantityForm = (props) => {
+    const amountInput = useRef();
+
+    const cartCntxt = useContext(CartContext)
+
+    const addItemToCart = (event) => {
+        event.preventDefault();
+        const quantity = document.getElementById('amount_'+props.id).value
+        cartCntxt.addItem({...props.item, quantity: quantity})
+        console.log(cartCntxt.items)
+    }
+
     return (
         <form className={classes.fullForm}>
             <div className={classes.form}>
-                <label>Amount</label>
-                <input type="text" value={1}></input>
+                <label htmlFor={'amount_'+props.id}>Amount</label>
+                <input type="number" ref={amountInput} id={'amount_'+props.id} defaultValue={1}></input>
             </div>
             <div>
-                <Button>+Add</Button>
+                <button className={classes.button} onClick={addItemToCart}>+Add</button>
             </div>
             
         </form>
