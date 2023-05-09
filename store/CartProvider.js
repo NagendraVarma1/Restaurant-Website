@@ -27,7 +27,25 @@ const CartProvider = (props) => {
         setItems(updatedItems)
     };
 
-    const removeItemFromCartHandler = (id) => {};
+    const removeItemFromCartHandler = (id) => {
+        const itemIndex = items.findIndex((cartItem) => cartItem.id === id);
+        const item = items[itemIndex]
+
+        let newUpdatedItems;
+
+        if(item.quantity === 1){
+            newUpdatedItems = items.filter((item) => item.id !== id)
+        }
+        else{
+            const newUpdatedItem = {
+                ...item,
+                quantity: Number(item.quantity) - 1
+            }
+            newUpdatedItems = [...items];
+            newUpdatedItems[itemIndex] = newUpdatedItem;
+        }
+        setItems(newUpdatedItems)
+    };
 
     const cartContext = {
         items: items,
