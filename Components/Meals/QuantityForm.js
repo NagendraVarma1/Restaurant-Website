@@ -11,7 +11,6 @@ const QuantityForm = (props) => {
         event.preventDefault();
         const quantity = document.getElementById('amount_'+props.id).value
         cartCntxt.addItem({...props.item, quantity: quantity})
-        console.log(cartCntxt.items)
     }
 
     return (

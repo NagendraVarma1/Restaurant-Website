@@ -6,8 +6,25 @@ const CartProvider = (props) => {
     const [items, setItems] = useState([])
 
     const addItemToCartHandler = (item) => {
-        setItems([...items, item])
-        console.log('Inside addItemToCartHandler', cartContext)
+
+        const existingCartItemIndex = items.findIndex((cartItem) => cartItem.id === item.id);
+
+        const existingCartItem = items[existingCartItemIndex];
+
+        let updatedItems;
+
+        if(existingCartItem){
+            const updatedItem = {
+                ...existingCartItem,
+                quantity: Number(existingCartItem.quantity) + Number(item.quantity)
+            }
+            updatedItems = [...items];
+            updatedItems[existingCartItemIndex] = updatedItem;
+        }
+        else{
+            updatedItems = items.concat(item)
+        }
+        setItems(updatedItems)
     };
 
     const removeItemFromCartHandler = (id) => {};
@@ -20,7 +37,6 @@ const CartProvider = (props) => {
 
     return <CartContext.Provider value={cartContext}>
         {props.children}
-        {console.log('Inside CartContext.Provider', cartContext)}
     </CartContext.Provider>
 };
 

@@ -13,7 +13,7 @@ const Cart = (props) => {
     <ul className={classes["cart-items"]}>
       {cartCtx.items.map((item) => {
         amount = amount + Number(item.price * item.quantity);
-        return <li>Name: {item.name} price: {item.price} Quanitity: {item.quantity}</li>
+        return <li key={item.id}>Name: {item.name} price: {item.price} Quanitity: {item.quantity}</li>
       })}
     </ul>
   )
@@ -24,7 +24,7 @@ const Cart = (props) => {
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>${amount}</span>
+        <span>${amount.toFixed(2)}</span>
       </div>
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={props.onClose}>
